@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video">
+            <source src="{{ url_for('static', filename='video/TSW.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay">
+            <h1>Leading the Way in Healthcare Innovation</h1>
+            <p>Building a better future together</p>
+            <a href="{{ url_for('diseases') }}" class="btn btn-tertiary mx-auto">
+                Explore Now
+            </a>
+        </div>
+    </div>
+    <div class="section info">
+        <div class="container">
+            <h3 class="text-center mb-5 text-secondary display-2">What We Offer</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Diseases</h5>
+                      <p class="card-text">Information about diseases with supporting details.</p>
+                      <a href="#" class="btn btn-secondary">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Meds</h5>
+                      <p class="card-text">Check the information on medications.</p>
+                      <a href="{{ url_for('chemicalsMeds') }}" class="btn btn-secondary">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">About</h5>
+                        <p class="card-text">Learn about project team</p>
+                        <a href="{{ url_for('about') }}" class="btn btn-secondary">Learn more</a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+        </div>
+    </div>
+    <div class="row  m-0 border-top border-bottom border-3 border-primary">
+        <div class="col-6" id="rdf-bg">
+        </div>
+        <div class="col-6 bg-primary-light min-h-400 d-flex flex-column justify-content-center align-items-center p-2">
+            <h5 class="display-6">Category 2</h5>
+            <p class="fw-bold text-center">Resource Description Framework (RDF)<br/>RDF with Schema (RDFS)</p>
+        </div>
+        <div class="col-6 bg-primary-light min-h-400 d-flex flex-column justify-content-center align-items-center p-2">
+            <h5 class="display-6">Category 3</h5>
+            <p class="fw-bold text-center">SPARQL Protocol<br/>RDF Query Language</p>
+        </div>
+        <div class="col-6" id="sparql-bg">
+        </div>
+    </div>
+</div>
+{% endblock %}

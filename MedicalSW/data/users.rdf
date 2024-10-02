@@ -1,0 +1,11 @@
+@prefix ex: <http://example.org/extra#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<http://example.org/user#MedicalSW> a foaf:Person ;
+    ex:email "medicalsw@best.com" ;
+    ex:password "$2b$12$7Zhd8rIIUCiHiZPhRzMfoOQNMKvRQF.mmVzyY8RITdfKZd1BasCci" ;
+    foaf:birthday "2001-01-01" ;
+    foaf:firstName "Medical" ;
+    foaf:lastName "SW" ;
+    foaf:name "MedicalSW" .
+

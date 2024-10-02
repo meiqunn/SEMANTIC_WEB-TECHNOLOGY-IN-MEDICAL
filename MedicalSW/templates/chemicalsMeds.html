@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Chemicals & Meds{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="section title">
+        <div class="container">
+            <h2 class="bg-white mx-auto p-3 d-table text-center display-1">Chemicals & Meds</h2>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="bg-white">
+                <input type="hidden" id="total-page"/>
+                <form class="mb-3" id="search-form">
+                    <div class="input-group d-flex flex-row-reverse">
+                      <button type="submit" class="input-group-text rounded-0" id="search-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                      </button>
+                      <input type="text" id="search-term" class="form-control rounded-0" placeholder="Search"aria-describedby="search-btn">
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="tabulator mb-3" id="meds-table"></div>
+                    </div>
+                    <div class="col-lg-6" id="meds-result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let searchParams = new URL(document.location).searchParams;
+    document.getElementById('search-term').value = searchParams.get('q');
+
+    var table = new Tabulator("#meds-table", {
+        pagination:true,
+        paginationMode:"remote",
+        paginationSize:10,
+        ajaxURL: "/meds-list",
+        layout: "fitDataStretch",
+        columns:[
+            {title:"name", field:"name",headerSort:false}
+        ],
+        ajaxParams: function () {
+            let searchParams = new URL(document.location).searchParams;
+            var params = {};
+            let q = searchParams.get('q');
+            if(q)
+            {
+                params['q'] = q;
+            }
+
+            var totalPage = document.getElementById('total-page').value;
+            params['totalPage'] = totalPage;
+            return params;
+        },
+        ajaxResponse:function(url, params, response){
+            document.getElementById('total-page').value = response.last_page
+            return response;
+        },
+    }); 
+
+    table.on("rowClick", function(e, row){
+        var rowData = row.getData();
+            var medsResult = document.getElementById('meds-result');
+            medsResult.innerHTML = ""
+            var scopeNote = `<h3>${rowData.scopeNote}</h3><hr/>`;
+            fetch('/info/' + rowData.tree)
+                .then(response => response.json())
+                .then(childData => {
+                    var html = ''
+                    for(child of childData.data){      
+                        var meds = `<span id="span-${child.tree.replaceAll('.','-')}" class="badge text-bg-success ms-2" onClick="launchChild('${rowData.tree}', '${child.tree}', '${child.scopeNote}')">${child.name}</span>`
+                        html += meds
+                    }
+                    medsResult.innerHTML = `<div class="mb-3"><span class="badge text-bg-success me-2 active">${rowData.name}</span></div>` + `<div id='meds-result-${rowData.tree.replaceAll('.','-')}'>` + scopeNote + html + "<div class='childResult'></div></div>";           
+                })
+                .catch(error => console.error('Error fetching child data:', error));
+    });
+
+    function launchChild(parentTree, childTree,scopeNote){
+        document.querySelectorAll(`#meds-result-${parentTree.replaceAll('.','-')} span`).forEach(r => r.classList.remove('active'));
+        document.querySelector(`#meds-result-${parentTree.replaceAll('.','-')} span#span-${childTree.replaceAll('.','-')}`).classList.add('active');
+        var medsResult = document.querySelector(`#meds-result-${parentTree.replaceAll('.','-')} .childResult`)
+        medsResult.innerHTML = ""
+        var scopeNote = `<h3>${scopeNote}</h3><hr/>`;
+        fetch('/info/' + childTree)
+                .then(response => response.json())
+                .then(childData => {
+                    var html = ''
+                    for(child of childData.data){      
+                        var meds = `<span id="span-${child.tree.replaceAll('.','-')}" class="badge text-bg-success me-2" onClick="launchChild('${childTree}', '${child.tree}', '${child.scopeNote}')">${child.name}</span>`
+                        html += meds
+                    }
+                    medsResult.innerHTML = `<div class="mt-3" id='meds-result-${childTree.replaceAll('.','-')}'>` + scopeNote + html + "<div class='childResult'></div></div>";           
+                })
+                .catch(error => console.error('Error fetching child data:', error));
+    }
+
+    document.getElementById("search-form").addEventListener("submit", function(e){
+        e.preventDefault();
+        var q = document.getElementById("search-term").value;
+        var url = new URL(window.location.href);
+        url.searchParams.set('q',q);
+        window.location.href = url;
+    });
+</script>
+{% endblock %}

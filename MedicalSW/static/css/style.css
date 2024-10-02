@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    font-family: "Roboto", sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: "Bebas Neue", sans-serif;
+}
+
+body{
+    margin:0px;
+}
+
+:root {
+    --primary-color: #95B558;
+    --secondary-color: #4b620c;
+    --tertiary-color: #e0a800;
+}
+
+::selection{
+    background-color: var(--tertiary-color);
+}
+
+button, a{
+    outline: none !important;
+    border: none !important;
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+input{
+    outline: none !important;
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+input:focus{
+    border-color:var(--primary-color)!important
+}
+
+.bg-primary{
+    background-color: var(--primary-color)!important;
+}
+
+.bg-primary-light{
+    background-color: rgba(149,181,88,0.2);
+}
+
+.bg-secondary{
+    background-color: var(--secondary-color)!important;
+}
+
+.bg-tertiary{
+    background-color: var(--tertiary-color)!important;
+}
+
+.btn-primary{
+    background-color: var(--primary-color)!important;
+}
+
+.btn-secondary{
+    background-color: var(--secondary-color)!important;
+}
+
+.btn-tertiary{
+    background-color: var(--tertiary-color)!important;
+}
+
+.border-primary{
+    border-color: var(--primary-color)!important;
+}
+
+.border-secondary{
+    border-color: var(--secondary-color)!important;
+}
+
+.border-tertiary{
+    border-color: var(--tertiary-color)!important;
+}
+
+.text-primary{
+    color: var(--primary-color)!important;
+}
+
+.text-secondary{
+    color: var(--secondary-color)!important;
+}
+
+.text-tertiary{
+    color: var(--tertiary-color)!important;
+}
+
+.video-background {
+    position: relative;
+    height: 82vh;
+    overflow: hidden;
+}
+
+#bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.video-overlay {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.section{
+    padding:80px 0px;
+}
+
+.info .row > div:nth-child(even) .card{
+    background-color:rgba(149,181,88,0.8);
+}
+
+.info .row > div:nth-child(odd) .card{
+    background-color:rgba(149,181,88,0.2);
+}
+
+.card{
+    border-radius: 0px;
+    border:none;
+}
+
+#rdf-bg{
+    background: url('../img/rdf.jpg') no-repeat center;
+    background-size: contain;
+    background-origin: content-box;
+    padding:30px;
+}
+
+#sparql-bg{
+    background: url('../img/sparql.jpg') no-repeat center;
+    background-size: contain;
+    background-origin: content-box;
+    padding:30px;
+}
+
+.min-h-400{
+    min-height: 400px;
+}
+
+.title{
+    background: url('../img/title-bg.jpg') no-repeat center;
+    background-size: cover;
+}
+
+.disease-list .card{
+    background-color: var(--pr);
+}
+
+.disease-list a{
+    text-decoration: none;
+    color:var(--secondary-color);
+    font-weight: 500;
+    padding:20px;
+    display:inline-block;
+}
+
+.disease-list a:hover{
+    text-decoration: underline;
+}
+
+.nav-link{
+    padding:8px 10px!important;
+}
+
+.tabulator .tabulator-header {
+    background-color: var(--secondary-color);
+    border-bottom: 1px solid var(--primary-color);
+    color: white;
+    text-transform: uppercase;
+    font-size:18px;
+}
+
+.tabulator .tabulator-header .tabulator-col {
+        background:var(--primary-color);
+        border-right:1px solid rgba(149,181,88,0.2);
+    }
+
+.tabulator .tabulator-header .tabulator-col .tabulator-col-content {
+padding:10px;
+}
+
+.tabulator .tabulator-header .tabulator-col.tabulator-sortable.tabulator-col-sorter-element:hover {
+background-color: var(--secondary-color);
+}
+.tabulator-row {
+    background-color: rgba(149,181,88,0.2)
+}
+
+.tabulator-row .tabulator-cell {
+padding:10px;
+}
+.tabulator-row.tabulator-row-even{
+background-color:rgba(149,181,88,0.5);
+}
+
+.tabulator-row.tabulator-selectable:hover {
+background-color:rgba(149,181,88,0.8);
+}
+
+.tabulator .tabulator-footer {
+    background-color: var(--primary-color);
+}
+.tabulator .tabulator-footer .tabulator-footer-contents {
+    padding:10px;
+}
+
+.tabulator .tabulator-footer .tabulator-page {
+    background:var(--primary-color);
+    color: white;
+    text-transform: uppercase;
+    font-size:18px;
+}
+
+    .tabulator .tabulator-footer .tabulator-page.active {
+        background-color:var(--secondary-color);
+        color: white;
+    }
+
+.tabulator .tabulator-data-tree-control{
+    display: none!important;
+}
+
+.text-bg-success{
+    background-color: var(--primary-color)!important;
+}
+
+.text-bg-success.active{
+    background-color: var(--secondary-color)!important;
+}
+
+.badge{
+    cursor: pointer;
+}
+
+#signup-page:after, #login-page:after{
+    content:'';
+    position:absolute;
+    top:43px;
+    left:0;
+    width:100%;
+    height:3px;
+    background-color:var(--secondary-color);
+    transform: rotate(-45deg);
+    transform-origin:left;
+}
+
+    #signup-page:before, #login-page:before {
+        content: '';
+        position: absolute;
+        top: 60px;
+        left: -30px;
+        width: 100%;
+        height: 30px;
+        border-top: 3px solid var(--primary-color);
+        border-bottom: 3px solid var(--tertiary-color);
+        transform: rotate(-45deg);
+        transform-origin: left;
+    }
+
+    #signup-page .card, #login-page .card{
+    width: 100%;
+    max-width: 500px;
+}
+
+#signup-page a, #login-page a{
+    color:var(--secondary-color);
+}
+
+#signup-page img, #login-page img{
+    max-width: 150px;
+}
+
+#signup-page, #login-page{
+    padding:60px 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#nav-login-button{
+    background-color:var(--secondary-color);
+    color:white;
+}
+
+.dropdown-toggle::after{
+    display:none;
+}

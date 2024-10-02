@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="section title">
+        <div class="container">
+            <h2 class="bg-white mx-auto p-3 d-table text-center display-1">About</h2>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row disease-list bg-primary-light">
+                {% for item in context %}
+                <div class="col-xl-6">
+                    <a href="/info/{{ item.descr }}" tree="{{ item.tree }}">{{ item.name }}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row  m-0 border-top border-bottom border-3 border-primary">
+            <div class="col-6 min-h-400 d-flex flex-column justify-content-center align-items-center p-2">
+                <h5 class="display-6">Teo Jun Heng</h5>
+                <p class="fw-bold text-center">1201201367</p>
+            </div>
+            <div class="col-6 bg-primary-light min-h-400 d-flex flex-column justify-content-center align-items-center p-2">
+                <h5 class="display-6">Tey Mei Qun</h5>
+                <p class="fw-bold text-center">1201200152</p>
+            </div>
+            <div class="col-6 bg-primary-light min-h-400 d-flex flex-column justify-content-center align-items-center p-2">
+                <h5 class="display-6">Chin Yi Sin</h5>
+                <p class="fw-bold text-center">1211100569</p>
+            </div>
+            <div class="col-6 min-h-400 d-flex flex-column justify-content-center align-items-center p-2">
+                <h5 class="display-6">Yue Nian Yong</h5>
+                <p class="fw-bold text-center">1211200470</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
